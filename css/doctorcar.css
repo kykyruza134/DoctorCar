@@ -1,0 +1,139 @@
+/* ================================================================
+   Doctor Car — стиль по баннеру группы: глубокий чёрный, глянец,
+   красно-синие неоновые диагонали, тонкие линейные иконки,
+   прописные подписи с разрядкой. Подключается после style.css.
+   ================================================================ */
+:root {
+  --bg: #050608;
+  --bg-2: #0b0d12;
+  --card: #0e1117;
+  --line: #1c2130;
+  --text: #eef1f6;
+  --muted: #9aa3b5;
+  --red: #e32636;
+  --blue: #2f7bff;
+  --accent: var(--red);
+  --accent-soft: rgba(227, 38, 54, .14);
+  --blue-soft: rgba(47, 123, 255, .14);
+  --glow-red: 0 0 12px rgba(227, 38, 54, .9), 0 0 32px rgba(227, 38, 54, .45);
+  --glow-blue: 0 0 12px rgba(47, 123, 255, .9), 0 0 32px rgba(47, 123, 255, .45);
+  --cond: "Montserrat", "Segoe UI", system-ui, Arial, sans-serif;
+  --sans: "Montserrat", "Segoe UI", system-ui, Arial, sans-serif;
+  --focus: 0 0 0 3px rgba(47, 123, 255, .7);
+}
+h2, h3 { letter-spacing: .04em; }
+h2 { font-weight: 800; }
+.tag { background: transparent; color: var(--text); clip-path: none; padding: 2px 0 2px 14px; border-left: 3px solid var(--red); box-shadow: -6px 0 14px -6px rgba(227, 38, 54, .9); font-weight: 600; letter-spacing: .24em; }
+.btn { clip-path: none; padding-right: 24px; border-radius: 2px; letter-spacing: .14em; font-weight: 700; font-size: .9rem; }
+.btn--accent { background: linear-gradient(90deg, var(--red), #ff3b4d); color: #fff; }
+.btn--accent:hover { box-shadow: var(--glow-red); }
+.btn--line { border: 1px solid var(--blue); color: var(--text); }
+.btn--line:hover { background: var(--blue); color: #fff; box-shadow: var(--glow-blue); }
+.btn--small { padding: 8px 16px; }
+.logo__digits { font: 800 1.25rem/1 var(--cond); letter-spacing: .08em; color: var(--text); }
+.logo__digits b { color: var(--red); text-shadow: var(--glow-red); }
+.topnav a::after { background: var(--blue); box-shadow: var(--glow-blue); }
+.progress span { background: linear-gradient(90deg, var(--blue), var(--red)); }
+
+/* ----- Шапка-баннер: фото в косых панелях с неоновыми разделителями ----- */
+.dc-hero { position: relative; background: radial-gradient(900px 400px at 15% 0%, rgba(47, 123, 255, .16), transparent 60%), radial-gradient(900px 400px at 90% 100%, rgba(227, 38, 54, .14), transparent 60%), var(--bg); padding: 40px 0 0; overflow: hidden; }
+.dc-hero__head { display: grid; gap: 20px; align-items: end; margin-bottom: 28px; }
+@media (min-width: 900px) { .dc-hero__head { grid-template-columns: 1fr auto; } }
+.dc-hero h1 { font: 800 clamp(2.4rem, 8vw, 5rem)/1 var(--cond); letter-spacing: .06em; text-transform: uppercase; margin: 0 0 12px; }
+.dc-hero h1 b { color: var(--red); text-shadow: var(--glow-red); font-weight: 800; }
+.dc-hero__sub { color: var(--muted); font-size: 1.05rem; max-width: 34em; margin: 0 0 6px; }
+.dc-hero__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.dc-hero .open-status { margin: 6px 0 0; }
+
+.panels { display: flex; height: clamp(220px, 42vw, 440px); margin: 0 -8%; }
+.panel { position: relative; flex: 1; overflow: hidden; transform: skewX(-16deg); margin: 0 3px 0 0; }
+.panel:last-child { margin-right: 0; }
+.panel img { position: absolute; top: 0; left: -30%; width: 160%; max-width: none; height: 100%; object-fit: cover; transform: skewX(16deg); filter: saturate(.85) contrast(1.08) brightness(.8); transition: transform 1.2s cubic-bezier(.2, .7, .2, 1), filter .5s; }
+.panel:hover img { filter: saturate(1) contrast(1.1) brightness(.95); transform: skewX(16deg) scale(1.05); }
+.panel::after { content: ""; position: absolute; top: 0; bottom: 0; right: 0; width: 3px; z-index: 2; }
+.panel:nth-child(odd)::after { background: var(--blue); box-shadow: var(--glow-blue); }
+.panel:nth-child(even)::after { background: var(--red); box-shadow: var(--glow-red); }
+.panel:last-child::after { display: none; }
+.panel figcaption { position: absolute; left: 24%; right: 10%; bottom: 14px; transform: skewX(16deg); font: 600 .7rem var(--cond); letter-spacing: .2em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 8px #000, 0 0 2px #000; z-index: 2; }
+@media (max-width: 599px) { .panel figcaption { display: none; } .panels { margin: 0 -14%; } }
+.dc-hero__fade { height: 90px; margin-top: -90px; position: relative; background: linear-gradient(to bottom, transparent, var(--bg)); pointer-events: none; z-index: 1; }
+
+/* ряд иконок, как на баннере */
+.icons { list-style: none; margin: 0; padding: 18px 0 44px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; position: relative; }
+@media (min-width: 760px) { .icons { grid-template-columns: repeat(4, 1fr); } }
+.icons li { position: relative; }
+.icons a { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px 10px; text-decoration: none; text-align: center; color: var(--text); font: 600 .72rem/1.35 var(--cond); letter-spacing: .18em; text-transform: uppercase; transition: transform .25s; min-height: 44px; }
+.icons a:hover { transform: translateY(-3px); }
+.icons a:hover .ico { filter: drop-shadow(0 0 10px rgba(47, 123, 255, .95)); }
+.icons li + li::before { content: ""; position: absolute; left: -2px; top: 18%; bottom: 18%; width: 2px; transform: skewX(-18deg); }
+.icons li:nth-child(even)::before { background: var(--red); box-shadow: var(--glow-red); }
+.icons li:nth-child(odd)::before { background: var(--blue); box-shadow: var(--glow-blue); }
+@media (max-width: 759px) { .icons li:nth-child(3)::before { display: none; } }
+.ico { width: 52px; height: 52px; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 6px rgba(47, 123, 255, .55)); transition: filter .3s; }
+symbol .b { stroke: #e9eefc; }
+symbol .a { stroke: var(--blue); }
+symbol .r { stroke: var(--red); }
+
+/* Неоновый разделитель секций */
+.neon-split { height: 2px; margin: 0; border: 0; background: linear-gradient(90deg, transparent, var(--blue) 20%, var(--blue) 47%, transparent 49%, transparent 51%, var(--red) 53%, var(--red) 80%, transparent); box-shadow: 0 0 14px rgba(47, 123, 255, .45); }
+
+/* Услуги с иконками */
+.svc { background: linear-gradient(160deg, #10141c, #0a0c11); border-color: var(--line); }
+.svc::before { background: linear-gradient(var(--blue), var(--red)); box-shadow: var(--glow-blue); }
+.svc:hover { border-color: rgba(47, 123, 255, .6); box-shadow: 0 0 0 1px rgba(47, 123, 255, .25), 0 18px 40px -20px rgba(47, 123, 255, .5); }
+.svc .ico { width: 46px; height: 46px; margin-bottom: 14px; }
+.svc__go { color: #fff; }
+.svc__go::after { color: var(--red); }
+@media (min-width: 1000px) { .grid--4 { grid-template-columns: repeat(4, 1fr); } }
+
+/* Полоса с часами: диагональные неоновые линии */
+.band { background: #07080b; clip-path: none; padding: 56px 0; border-block: 1px solid var(--line); }
+.band::before { content: ""; inset: 0; transform: none; font: inherit; -webkit-text-stroke: 0; background:
+  linear-gradient(115deg, transparent 0 64%, rgba(47, 123, 255, .95) 64.15%, transparent 64.4%),
+  linear-gradient(115deg, transparent 0 72%, rgba(227, 38, 54, .95) 72.15%, transparent 72.4%),
+  linear-gradient(115deg, transparent 0 88%, rgba(47, 123, 255, .6) 88.1%, transparent 88.3%);
+  filter: drop-shadow(0 0 6px rgba(47, 123, 255, .7)); }
+.band__big span { color: var(--red); text-shadow: var(--glow-red); }
+.band .btn--dark { background: linear-gradient(90deg, var(--red), #ff3b4d); color: #fff; }
+.band .btn--dark:hover { box-shadow: var(--glow-red); }
+.section--panel { clip-path: none; padding-top: 88px; background: var(--bg-2); }
+
+/* Галерея */
+.dc-gallery { display: grid; gap: 10px; grid-template-columns: 1fr; }
+@media (min-width: 700px) { .dc-gallery { grid-template-columns: repeat(3, 1fr); } }
+.dc-gallery .shot img, .dc-gallery .shot:not(.shot--wide) img { aspect-ratio: 1; }
+.dc-gallery .shot figcaption { border-top-color: var(--blue); }
+.dc-gallery .shot:nth-child(2) figcaption { border-top-color: var(--red); }
+.shot a::after { border-color: var(--blue); box-shadow: inset 0 0 24px rgba(47, 123, 255, .45); }
+
+/* Форма */
+.form, .sent { border-top: 0; position: relative; }
+.form::before, .sent::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--red)); box-shadow: 0 0 14px rgba(227, 38, 54, .5); }
+.step__n { color: var(--blue); text-shadow: var(--glow-blue); }
+.day.is-selected, .slot.is-selected { background: var(--blue); border-color: var(--blue); color: #fff; box-shadow: var(--glow-blue); }
+.day:hover:not(:disabled), .slot:hover { border-color: var(--blue); }
+.check:has(input:checked) { border-color: var(--blue); background: var(--blue-soft); }
+.check input, .consent input { accent-color: var(--blue); }
+.channel-single { border-left-color: var(--blue); }
+.summary { border-left-color: var(--blue); }
+.consent a, .facts a, .footer a, .note a { text-decoration-color: var(--blue); }
+
+/* Движение в шапке */
+.motion .panel { opacity: 0; transform: skewX(-16deg) translateY(40px); transition: opacity .8s ease, transform 1s cubic-bezier(.2, .7, .2, 1); }
+.motion .panels.is-visible .panel { opacity: 1; transform: skewX(-16deg); }
+.motion .panels.is-visible .panel:nth-child(2) { transition-delay: .12s; }
+.motion .panels.is-visible .panel:nth-child(3) { transition-delay: .24s; }
+@keyframes neonpulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+.panel::after, .icons li + li::before { animation: neonpulse 3.2s ease-in-out infinite; }
+.icons li:nth-child(odd)::before { animation-delay: 1.6s; }
+.motion .icons li { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .7s cubic-bezier(.2, .7, .2, 1); }
+.motion .icons.is-visible li { opacity: 1; transform: none; }
+.motion .icons.is-visible li:nth-child(2) { transition-delay: .08s; }
+.motion .icons.is-visible li:nth-child(3) { transition-delay: .16s; }
+.motion .icons.is-visible li:nth-child(4) { transition-delay: .24s; }
+
+/* правки после проверки */
+.panel:first-child figcaption { left: 46%; }
+.panel:last-child figcaption { left: 14%; right: 34%; }
+.band__big span { text-shadow: 0 0 10px rgba(227, 38, 54, .55); }
+.dc-hero h1 b { text-shadow: 0 0 14px rgba(227, 38, 54, .6); }
